@@ -1,3 +1,14 @@
 .lock-waf*
 waflib/**/*.pyc
 build/
+*.swp
+work
+*.so
+*.o
+*.pinfo
+*.a
+android/obj
+android/bin
+android/gen
+android/local.properties
+android/proguard-project.txt
