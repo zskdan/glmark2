@@ -53,7 +53,7 @@ CanvasAndroid::init()
 
     resize(width_, height_);
 
-    if (!eglSwapInterval(egl_display, 0))
+    if (!eglSwapInterval(egl_display, 1))
         Log::info("** Failed to set swap interval. Results may be bounded above by refresh rate.\n");
 
     init_gl_extensions();

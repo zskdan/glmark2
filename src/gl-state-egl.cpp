@@ -343,7 +343,7 @@ GLStateEGL::valid()
         return false;
     }
 
-    if (!eglSwapInterval(egl_display_, 0)) {
+    if (!eglSwapInterval(egl_display_, 1)) {
         Log::info("** Failed to set swap interval. Results may be bounded above by refresh rate.\n");
     }
 
