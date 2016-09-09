@@ -58,9 +58,9 @@ private:
         benchmarks.push_back("pulsar:quads=5:texture=false:light=false");
         benchmarks.push_back("desktop:windows=4:effect=blur:blur-radius=5:passes=1:separable=true");
         benchmarks.push_back("desktop:windows=4:effect=shadow");
-        benchmarks.push_back("buffer:update-fraction=0.5:update-dispersion=0.9:columns=200:update-method=map:interleave=false");
-        benchmarks.push_back("buffer:update-fraction=0.5:update-dispersion=0.9:columns=200:update-method=subdata:interleave=false");
-        benchmarks.push_back("buffer:update-fraction=0.5:update-dispersion=0.9:columns=200:update-method=map:interleave=true");
+        benchmarks.push_back("buffer:update-fraction=0.5:update-dispersion=0.9:columns=200:update-method=map:interleave=false"); //NOT supported by mdp8996
+        //benchmarks.push_back("buffer:update-fraction=0.5:update-dispersion=0.9:columns=200:update-method=subdata:interleave=false"); // WARNING blocks after 3 sec on mdp8996 
+        benchmarks.push_back("buffer:update-fraction=0.5:update-dispersion=0.9:columns=200:update-method=map:interleave=true"); //NOT supported by mdp8996
         benchmarks.push_back("ideas:speed=duration");
         benchmarks.push_back("jellyfish");
         benchmarks.push_back("terrain");
