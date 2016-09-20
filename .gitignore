@@ -12,3 +12,6 @@ android/bin
 android/gen
 android/local.properties
 android/proguard-project.txt
+TAGS
+src/nto/aarch64/le/glmark2
+src/nto/arm/le.v7/glmark2
