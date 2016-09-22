@@ -25,6 +25,7 @@ class Glmark2SurfaceView extends GLSurfaceView {
         setEGLConfigChooser(getConfigChooser());
 
         setRenderer(new Glmark2Renderer(this));
+        setRenderMode(RENDERMODE_WHEN_DIRTY);
     }
 
     private EGLConfigChooser getConfigChooser() {
@@ -200,8 +201,8 @@ class Glmark2Renderer implements GLSurfaceView.Renderer {
     }
 
     public void onDrawFrame(GL10 gl) {
-        if (!Glmark2Native.render())
-            mView.getActivity().finish();
+	Glmark2Native.render();
+	mView.getActivity().finish();
     }
 
     public void onSurfaceChanged(GL10 gl, int width, int height) {

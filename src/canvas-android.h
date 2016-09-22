@@ -23,6 +23,7 @@
 #define GLMARK2_CANVAS_ANDROID_H_
 
 #include "canvas.h"
+#include <EGL/egl.h>
 
 /**
  * Canvas for rendering to Android surfaces.
@@ -35,10 +36,11 @@ class CanvasAndroid : public Canvas
 {
 public:
     CanvasAndroid(int width, int height) :
-        Canvas(width, height) {}
+        Canvas(width, height), fbo_(0) {}
     ~CanvasAndroid() {}
 
     bool init();
+    bool reset();
     void visible(bool visible);
     void clear();
     void update();
@@ -47,9 +49,20 @@ public:
     void write_to_file(std::string &filename);
     bool should_quit();
     void resize(int width, int height);
+    unsigned int fbo();
 
 private:
     void init_gl_extensions();
+    bool ensure_fbo();
+    bool bind_fbo();
+    void release_fbo();
+    GLenum gl_color_format_;
+    GLenum gl_depth_format_;
+    GLuint color_renderbuffer_;
+    GLuint depth_renderbuffer_;
+    GLuint fbo_;
+    EGLContext egl_surface_;
+    EGLDisplay egl_display_;
 };
 
 #endif

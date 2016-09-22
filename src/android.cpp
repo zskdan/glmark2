@@ -301,6 +301,10 @@ Java_org_linaro_glmark2_native_init(JNIEnv* env, jclass clazz,
     g_canvas->init();
 
     Log::info("glmark2 %s\n", GLMARK_VERSION);
+
+
+    Log::info("options:\n\toffscreen:%s\n", Options::offscreen?"True":"False");
+
     g_canvas->print_info();
 
     /* Add and register scenes */
@@ -361,10 +365,9 @@ Java_org_linaro_glmark2_native_render(JNIEnv* env)
 {
     static_cast<void>(env);
 
-    if (!g_loop->step()) {
-        Log::info("glmark2 Score: %u\n", g_loop->score());
-        return false;
-    }
+    while (g_loop->step());
+
+    Log::info("glmark2 Score: %u\n", g_loop->score());
 
     return true;
 }
