@@ -288,9 +288,6 @@ Java_org_linaro_glmark2_native_init(JNIEnv* env, jclass clazz,
         env->ReleaseStringUTFChars(log_file, log_file_c_str);
     }
 
-    /* Force reuse of EGL/GL context */
-    Options::reuse_context = true;
-
     Log::init("glmark2", Options::show_debug, g_log_extra);
     Util::android_set_asset_manager(AAssetManager_fromJava(env, asset_manager));
 
