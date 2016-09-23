@@ -297,12 +297,23 @@ Java_org_linaro_glmark2_native_init(JNIEnv* env, jclass clazz,
 
     g_canvas->init();
 
-    Log::info("glmark2 %s\n", GLMARK_VERSION);
+    Log::info("=======================================================\n");
+    Log::info("    glmark2 %s\n", GLMARK_VERSION);
+    Log::info("=======================================================\n");
 
-
-    Log::info("options:\n\toffscreen:%s\n", Options::offscreen?"True":"False");
+    Log::info("Options:\n"
+              "\t\treuse-context: %s\n"
+              "\t\tsynchronous:   %s\n"
+              "\t\toffscreen:     %s\n"
+              "\t\tsize:          %dx%d%s\n",
+              Options::reuse_context?"True":"False",
+              Options::sync?"True":"False",
+              Options::offscreen?"True":"False",
+              g_canvas->width(), g_canvas->height(),
+              (g_canvas->width() == -1 && g_canvas->height() == -1)?"(fullscreen)":"");
 
     g_canvas->print_info();
+    Log::info("=======================================================\n");
 
     /* Add and register scenes */
     g_scene_collection = new SceneCollection(*g_canvas);

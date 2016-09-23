@@ -140,6 +140,7 @@ do_validation(Canvas &canvas)
 int
 main(int argc, char *argv[])
 {
+    std::stringstream frameend_ss;
 
     if (!Options::parse_args(argc, argv))
         return 1;
@@ -205,6 +206,43 @@ main(int argc, char *argv[])
     Log::info("=======================================================\n");
     Log::info("    glmark2 %s\n", GLMARK_VERSION);
     Log::info("=======================================================\n");
+    switch(Options::frame_end) {
+        case Options::FrameEndSwap:
+            frameend_ss << "Swap";
+            break;
+        case Options::FrameEndFinish:
+            frameend_ss << "Finish";
+            break;
+        case Options::FrameEndFlush:
+            frameend_ss << "Flush";
+            break;
+        case Options::FrameEndReadPixels:
+            frameend_ss << "ReadPixels";
+            break;
+        case Options::FrameEndNone:
+            frameend_ss << "None";
+            break;
+        case Options::FrameEndDefault:
+            if (Options::offscreen)
+                frameend_ss << "Default (Finish)";
+            else
+                frameend_ss << "Default (Swap)";
+            break;
+    }
+
+    Log::info("Options:\n"
+              "\t\treuse-context: %s\n"
+              "\t\tsynchronous:   %s\n"
+              "\t\toffscreen:     %s\n"
+              "\t\tend-frame:     %s\n"
+              "\t\tsize:          %dx%d%s\n",
+              Options::reuse_context?"True":"False",
+              Options::sync?"True":"False",
+              Options::offscreen?"True":"False",
+              frameend_ss.str().c_str(),
+              canvas.width(), canvas.height(),
+              (canvas.width() == -1 && canvas.height() == -1)?"(fullscreen)":"");
+
     canvas.print_info();
     Log::info("=======================================================\n");
 
