@@ -294,7 +294,7 @@ Java_org_linaro_glmark2_native_init(JNIEnv* env, jclass clazz,
     Log::init("glmark2", Options::show_debug, g_log_extra);
     Util::android_set_asset_manager(AAssetManager_fromJava(env, asset_manager));
 
-    g_canvas = new CanvasAndroid(100, 100);
+    g_canvas = new CanvasAndroid(Options::size.first, Options::size.second);
     g_canvas->init();
 
     Log::info("glmark2 %s\n", GLMARK_VERSION);
@@ -325,6 +325,17 @@ Java_org_linaro_glmark2_native_resize(JNIEnv* env,
 {
     static_cast<void>(env);
     static_cast<void>(clazz);
+
+    bool request_fullscreen = (g_canvas->width() == -1 && g_canvas->height() == -1);
+
+    if (!request_fullscreen) {
+        Log::info("Android Resizing to %dx%d (fullscreen) is DROPPED."
+                  "if you want the fullscreen mode please provide the option:"
+                  "'--fullscreen'\n", w, h);
+        return;
+    }
+
+    /* resize to fullscreen */
 
     Log::debug("Resizing to %d x %d\n", w, h);
     g_canvas->resize(w, h);
