@@ -276,7 +276,7 @@ CanvasGeneric::do_make_current()
 {
     gl_state_.init_surface(native_window_);
 
-    if (!gl_state_.valid()) {
+    if (!gl_state_.valid(interval_)) {
         Log::error("CanvasGeneric: Invalid EGL state\n");
         return false;
     }

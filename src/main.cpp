@@ -182,6 +182,8 @@ main(int argc, char *argv[])
 
     CanvasGeneric canvas(native_state, gl_state, Options::size.first, Options::size.second);
 
+    canvas.interval(Options::sync);
+
     canvas.offscreen(Options::offscreen);
 
     canvas.visual_config(Options::visual_config);

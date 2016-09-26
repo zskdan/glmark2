@@ -295,6 +295,9 @@ Java_org_linaro_glmark2_native_init(JNIEnv* env, jclass clazz,
     Util::android_set_asset_manager(AAssetManager_fromJava(env, asset_manager));
 
     g_canvas = new CanvasAndroid(Options::size.first, Options::size.second);
+
+    g_canvas->interval(Options::sync);
+
     g_canvas->init();
 
     Log::info("glmark2 %s\n", GLMARK_VERSION);

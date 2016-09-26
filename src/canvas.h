@@ -247,14 +247,18 @@ public:
      */
     void visual_config(GLVisualConfig &config) { visual_config_ = config; }
 
+    /* TODO */
+    void interval( bool sync) { sync ? interval_ = 1 : interval_ = 0; }
+
 protected:
     Canvas(int width, int height) :
-        width_(width), height_(height), offscreen_(false) {}
+        width_(width), height_(height), offscreen_(false), interval_(0) {}
 
     int width_;
     int height_;
     LibMatrix::mat4 projection_;
     bool offscreen_;
+    GLint interval_;
     GLVisualConfig visual_config_;
 };
 

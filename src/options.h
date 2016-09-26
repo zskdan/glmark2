@@ -51,6 +51,7 @@ struct Options {
     static bool show_help;
     static bool reuse_context;
     static bool run_forever;
+    static bool sync;
     static bool annotate;
     static bool offscreen;
     static GLVisualConfig visual_config;

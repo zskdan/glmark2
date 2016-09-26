@@ -142,7 +142,7 @@ public:
     bool init_display(void* native_display, GLVisualConfig& config_pref);
     bool init_surface(void* native_window);
     void init_gl_extensions();
-    bool valid();
+    bool valid(int& interval);
     bool reset();
     void swap();
     // Performs a config search, returning a native visual ID on success

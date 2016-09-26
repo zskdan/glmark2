@@ -39,6 +39,7 @@ bool Options::show_debug = false;
 bool Options::show_help = false;
 bool Options::reuse_context = false;
 bool Options::run_forever = false;
+bool Options::sync = false;
 bool Options::annotate = false;
 bool Options::offscreen = false;
 GLVisualConfig Options::visual_config;
@@ -49,6 +50,7 @@ static struct option long_options[] = {
     {"benchmark-file", 1, 0, 0},
     {"validate", 0, 0, 0},
     {"frame-end", 1, 0, 0},
+    {"sync", 0, 0, 0},
     {"off-screen", 0, 0, 0},
     {"visual-config", 1, 0, 0},
     {"reuse-context", 0, 0, 0},
@@ -189,6 +191,8 @@ Options::parse_args(int argc, char **argv)
             Options::show_all_options = true;
         else if (!strcmp(optname, "run-forever"))
             Options::run_forever = true;
+        else if (!strcmp(optname, "sync"))
+            Options::sync = true;
         else if (c == 'd' || !strcmp(optname, "debug"))
             Options::show_debug = true;
         else if (c == 'h' || !strcmp(optname, "help"))
