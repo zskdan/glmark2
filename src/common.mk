@@ -64,7 +64,7 @@ scene-texture.cpp \
 text-renderer.cpp \
 texture.cpp \
 
-MYROOTDIR   := /net/frbuild/build/zakariae/wayland/benchs/glmark2.2
+MYROOTDIR   := /build/zakariae/wayland/benchs/forgit/glmark2-rb
 
 ifeq ($(CPU),arm)
 SUFFIX=.v7
