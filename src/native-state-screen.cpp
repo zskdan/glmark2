@@ -1,5 +1,5 @@
 /*
- * Copyright © 2016 Zakaria ElQotbi
+ * Copyright © 2016 Harman
  *
  * This file is part of the glmark2 OpenGL (ES) 2.0 benchmark.
  *
