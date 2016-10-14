@@ -28,6 +28,16 @@
 #include <fstream>
 #include <sstream>
 
+#if 0
+#include "util.h"
+
+static long     max = 0;
+static double   moy = 0;
+static long   count = 0;
+static long     min = INT_MAX;
+#endif
+
+
 /******************
  * Public methods *
  ******************/
@@ -167,11 +177,46 @@ CanvasAndroid::clear()
 void
 CanvasAndroid::update()
 {
-    if(Options::offscreen || Options::frame_end == Options::FrameEndFinish) {
-        glFinish();
-    } else {
-	eglSwapBuffers(egl_display_, egl_surface_);
+    Options::FrameEnd m = Options::frame_end;
+    if (m == Options::FrameEndDefault) {
+        if (Options::offscreen)
+            m = Options::FrameEndFinish;
+        else
+            m = Options::FrameEndSwap;
     }
+    switch(m) {
+        case Options::FrameEndSwap:
+	    eglSwapBuffers(egl_display_, egl_surface_);
+            break;
+        case Options::FrameEndFinish:
+            glFinish();
+            break;
+        case Options::FrameEndReadPixels:
+            read_pixel(width_ / 2, height_ / 2);
+            break;
+        case Options::FrameEndNone:
+        default:
+            break;
+    }
+
+#if 0
+	bool print = false;
+	double val = Util::get_timestamp_us();
+        glFinish();
+        val = Util::get_timestamp_us() - val;
+        if (val > max ) {
+	    max = val;
+            print = true;
+	} else if (val < min) {
+	    min = val;
+            print = true;
+	}
+        moy = ((moy*count++) + val)/count;
+        if(!(count&127) || print ) {
+	    Log::info("** glfinish stat: max:%ld moy:%f min:%ld count:%ld",
+                      max, moy, min, count);
+	}
+#endif
 }
 
 void

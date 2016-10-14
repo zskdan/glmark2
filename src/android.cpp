@@ -263,6 +263,7 @@ Java_org_linaro_glmark2_native_init(JNIEnv* env, jclass clazz,
     static const std::string arguments_file("/data/glmark2/args");
     int argc = 0;
     char **argv = 0;
+    std::stringstream frameend_ss;
 
     /* Load arguments from argument string or arguments file and parse them */
     if (args) {
@@ -301,14 +302,37 @@ Java_org_linaro_glmark2_native_init(JNIEnv* env, jclass clazz,
     Log::info("    glmark2 %s\n", GLMARK_VERSION);
     Log::info("=======================================================\n");
 
+    switch(Options::frame_end) {
+        case Options::FrameEndSwap:
+            frameend_ss << "Swap";
+            break;
+        case Options::FrameEndFinish:
+            frameend_ss << "Finish";
+            break;
+        case Options::FrameEndReadPixels:
+            frameend_ss << "ReadPixels";
+            break;
+        case Options::FrameEndNone:
+            frameend_ss << "None";
+            break;
+        case Options::FrameEndDefault:
+            if (Options::offscreen)
+                frameend_ss << "Default (Finish)";
+            else
+                frameend_ss << "Default (Swap)";
+            break;
+    }
+
     Log::info("Options:\n"
               "\t\treuse-context: %s\n"
               "\t\tsynchronous:   %s\n"
               "\t\toffscreen:     %s\n"
+              "\t\tend-frame:     %s\n"
               "\t\tsize:          %dx%d%s\n",
               Options::reuse_context?"True":"False",
               Options::sync?"True":"False",
               Options::offscreen?"True":"False",
+              frameend_ss.str().c_str(),
               g_canvas->width(), g_canvas->height(),
               (g_canvas->width() == -1 && g_canvas->height() == -1)?"(fullscreen)":"");
 
