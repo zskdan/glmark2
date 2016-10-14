@@ -191,6 +191,9 @@ CanvasAndroid::update()
         case Options::FrameEndFinish:
             glFinish();
             break;
+        case Options::FrameEndFlush:
+            glFlush();
+            break;
         case Options::FrameEndReadPixels:
             read_pixel(width_ / 2, height_ / 2);
             break;

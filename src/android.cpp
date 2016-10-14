@@ -309,6 +309,9 @@ Java_org_linaro_glmark2_native_init(JNIEnv* env, jclass clazz,
         case Options::FrameEndFinish:
             frameend_ss << "Finish";
             break;
+        case Options::FrameEndFlush:
+            frameend_ss << "Flush";
+            break;
         case Options::FrameEndReadPixels:
             frameend_ss << "ReadPixels";
             break;

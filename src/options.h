@@ -33,6 +33,7 @@ struct Options {
         FrameEndDefault,
         FrameEndNone,
         FrameEndSwap,
+        FrameEndFlush,
         FrameEndFinish,
         FrameEndReadPixels
     };

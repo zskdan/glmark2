@@ -22,7 +22,7 @@ Run a quick output validation test instead of
 running the benchmarks
 .TP
 \fB\-\-frame-end\fR METHOD
-How to end a frame [default,none,swap,finish,readpixels]
+How to end a frame [default,none,swap,flush,finish,readpixels]
 .TP
 \fB\-\-off-screen\fR
 Render to an off-screen surface

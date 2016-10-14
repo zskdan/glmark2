@@ -102,6 +102,8 @@ frame_end_from_str(const std::string &str)
 
     if (str == "swap")
         m = Options::FrameEndSwap;
+    else if (str == "flush")
+        m = Options::FrameEndFlush;
     else if (str == "finish")
         m = Options::FrameEndFinish;
     else if (str == "readpixels")
@@ -125,7 +127,7 @@ Options::print_help()
            "                         (the option can be used multiple times)\n"
            "      --validate         Run a quick output validation test instead of \n"
            "                         running the benchmarks\n"
-           "      --frame-end METHOD How to end a frame [default,none,swap,finish,readpixels]\n"
+           "      --frame-end METHOD How to end a frame [default,none,swap,flush,finish,readpixels]\n"
            "      --off-screen       Render to an off-screen surface\n"
            "      --visual-config C  The visual configuration to use for the rendering\n"
            "                         target: 'red=R:green=G:blue=B:alpha=A:buffer=BUF'.\n"
