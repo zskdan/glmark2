@@ -22,7 +22,7 @@ CCFLAGS += -I../../../../ \
            -DHAVE_STDIO_H=1 -DHAVE_JPEGLIB_H=1 -DHAVE_MEMSET=1 -DHAVE_SQRT=1 \
            -DHAVE_LIBPNG=1 -DHAVE_EGL=1 -DHAVE_GLESV2=1 -DHAVE_DRM=1 \
            -DGLMARK_DATA_PATH=\"/base/usr/share/glmark2\" \
-           -DGLMARK_VERSION=\"2014.03\" -DUSE_EXCEPTIONS \
+           -DGLMARK_VERSION=\"2014.03$(EXTRAVERSION) \" -DUSE_EXCEPTIONS \
            -ggdb -O0
 
 LIBS = 

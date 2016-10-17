@@ -7,6 +7,8 @@ unexport ROOT_DIR
 
 export JLEVEL := $(shell cat /proc/cpuinfo | grep processor | wc -l)
 
+export EXTRAVERSION := $(shell echo -n -$(shell git rev-parse --verify --short HEAD 2>/dev/null); if git diff-index --name-only HEAD 2>/dev/null | read dummy ; then echo -n "-dirty" ; fi)
+
 LIST=CPU
 include recurse.mk
 

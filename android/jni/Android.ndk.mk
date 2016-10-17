@@ -48,10 +48,12 @@ include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 
+export EXTRAVERSION := $(shell echo -n -$(shell git rev-parse --verify --short HEAD 2>/dev/null); if git diff-index --name-only HEAD 2>/dev/null | read dummy ; then echo -n "-dirty" ; fi)
+
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE := libglmark2-android
 LOCAL_STATIC_LIBRARIES := libglmark2-matrix libglmark2-png libglmark2-ideas libglmark2-jpeg
-LOCAL_CFLAGS := -DGLMARK_DATA_PATH="" -DGLMARK_VERSION="\"2014.03\"" \
+LOCAL_CFLAGS := -DGLMARK_DATA_PATH="" -DGLMARK_VERSION="\"2014.03$(EXTRAVERSION)\"" \
                 -DGLMARK2_USE_GLESv2 -Wall -Wextra -Wnon-virtual-dtor \
                 -Wno-error=unused-parameter -fpermissive
 LOCAL_LDLIBS := -landroid -llog -lGLESv2 -lEGL -lz

@@ -8,7 +8,9 @@ from waflib import Context
 out = 'build'
 top = '.'
 
-VERSION = '2014.03'
+EXTRAVERSION = subprocess.check_output('echo -n -$(git rev-parse --verify --short HEAD 2>/dev/null); if git diff-index --name-only HEAD 2>/dev/null | read dummy ; then echo -n "-dirty" ; fi', shell=True)
+
+VERSION = '2014.03' + EXTRAVERSION
 APPNAME = 'glmark2'
 
 FLAVORS = {
